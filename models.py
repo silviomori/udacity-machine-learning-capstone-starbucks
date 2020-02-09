@@ -23,10 +23,11 @@ class LinearNN(nn.Module):
 
     def forward(self, x):
         x = x.view(-1, self.input_size)
-        for layer in self.module_list:
+        for layer in self.module_list[:-1]:
             x = layer(x)
             x = self.activation(x)
             x = self.dropout(x)
+        x = self.module_list[-1](x)
 
         return x
 
