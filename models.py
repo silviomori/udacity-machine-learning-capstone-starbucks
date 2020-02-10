@@ -42,10 +42,9 @@ class RecurrentNN(nn.Module):
         self.output_size = output_size
 
         ## Build the Recurrent Network
-        self.rnn = nn.RNN(input_size=input_size,
+        self.rnn = nn.GRU(input_size=input_size,
                           hidden_size=hidden_size,
                           num_layers=hidden_layers,
-                          nonlinearity='tanh',
                           batch_first=True,
                           dropout=dropout)
 
@@ -62,7 +61,7 @@ class RecurrentNN(nn.Module):
             layer = nn.Linear(nodes_in, nodes_out)
             self.classifier.append(layer)
 
-        self.activation = nn.Tanh()
+        self.activation = nn.ReLU()
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
