@@ -49,6 +49,9 @@ class RecurrentNN(nn.Module):
                           batch_first=True,
                           dropout=dropout)
 
+        self.hidden_tensor = torch.zeros(hidden_layers, 1, hidden_size) \
+                             .uniform_(-3e-3, 3e-3)
+
         ## Build the classifier
         nodes = []
         nodes.append(hidden_size)
@@ -62,11 +65,12 @@ class RecurrentNN(nn.Module):
         self.activation = nn.Tanh()
         self.dropout = nn.Dropout(dropout)
 
-    def forward(self, x, h):
+    def forward(self, x):
         batch_size = x.shape[0]
         seq_length = x.shape[1]
 
         ## Feed the RNN
+        h = self.init_hidden(batch_size)
         x, h = self.rnn(x, h)
 
         ## Feed the Classifier
@@ -81,5 +85,8 @@ class RecurrentNN(nn.Module):
         ## Stack the results
         x = x.view(batch_size, seq_length, self.output_size)
 
-        return x, h
+        return x
+
+    def init_hidden(self, batch_size):
+        self.hidden_tensor.repeat(1, batch_size, 1)
 
