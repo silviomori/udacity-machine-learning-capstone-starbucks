@@ -3,8 +3,8 @@ import torch.nn as nn
 
 
 class LinearNN(nn.Module):
-    def __init__(self, input_size=18, hidden_layers=[128,128],
-                 output_size=1, dropout=0.2):
+    def __init__(self, input_size, hidden_layers=[128,128],
+                 output_size=2, dropout=0.2):
         super(LinearNN, self).__init__()
         self.input_size = input_size
 
@@ -34,7 +34,7 @@ class LinearNN(nn.Module):
 
 class RecurrentNN(nn.Module):
     def __init__(self, input_size, hidden_size=128, hidden_layers=2,
-                 classifier_layers=[128], output_size=1, dropout=0.2):
+                 classifier_layers=[], output_size=2, dropout=0.2):
         super(RecurrentNN, self).__init__()
 
         self.input_size = input_size
