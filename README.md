@@ -22,6 +22,7 @@ The task is to combine transaction, demographic and offer data to determine whic
 - ModelTraining.ipynb - notebook to train the models proposed
 - SystemDemonstration.ipynb - notebook to demonstrate how the final model works
 - data.zip - file containing the datasets
+- dataloaders.zip - dataloaders used to train and evaluate the networks
 - linear_classifier.pt - file containing the weights of the benchmark model
 - models.py - code for the neural networks
 - proposal.pdf - document defining Capstone Project proposal
